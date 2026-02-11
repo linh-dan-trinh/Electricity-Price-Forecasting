@@ -1,0 +1,516 @@
+<!DOCTYPE HTML>
+<!--
+	Story by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+
+	Note: Only needed for demo purposes. Delete for production sites.
+-->
+<html>
+	<head>
+		<title>Story by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="divided">
+
+				<!-- Gallery -->
+					<section class="wrapper style1 align-center">
+
+						<!-- Gallery -->
+							<div class="gallery style2 medium lightbox onscroll-fade-in">
+								<article>
+									<a href="images/gallery/fulls/illu4.png" class="image">
+										<img src="images/gallery/thumbs/illu4.png" alt="" />
+									</a>
+									<div class="caption">
+										<ul class="actions fixed">
+											<li><span class="button small">Details</span></li>
+										</ul>
+									</div>
+								</article>
+								<article>
+									<a href="images/gallery/fulls/illu2.png" class="image">
+										<img src="images/gallery/thumbs/illu2.png" alt="" />
+									</a>
+									<div class="caption">	
+										<ul class="actions fixed">
+											<li><span class="button small">Details</span></li>
+										</ul>
+									</div>
+								</article>
+								<article>
+									<a href="images/gallery/fulls/illu3.png" class="image">
+										<img src="images/gallery/thumbs/illu3.png" alt="" />
+									</a>
+									<div class="caption">
+										<ul class="actions fixed">
+											<li><span class="button small">Details</span></li>
+										</ul>
+									</div>
+								</article>
+								<article>
+									<a href="images/gallery/fulls/illu1.png" class="image">
+										<img src="images/gallery/thumbs/illu1.png" alt="" />
+									</a>
+									<div class="caption">
+										<ul class="actions fixed">
+											<li><span class="button small">Details</span></li>
+										</ul>
+									</div>
+								</article>
+					</section>
+
+								
+			<section class="wrapper style2 align-left">
+			<div class="inner">
+						
+						<header>
+						<h1>Forecasting Japan Electricity Prices Using ARIMA Models</h1>
+						<p>Trinh Linh Dan </p>
+						</header>
+						<p>This project works with the ARIMA model and its variation to predict next – day electricity prices, with the empirical study from Japan energy exchange to help enterprises get better business decisions.</p>
+											<span class="image fit"><img src="images/Untitled5.png" alt="" /></span>
+											<hr />
+
+									<header>
+										<h2><b>Data description</b></h2>
+											</header>
+											<span class="image fit"><img src="images/annual electricity plot.jpg" alt="" /></span>
+									<p>The analysis of historical pricing revealed that the electricity price in the Japanese electricity market has not risen considerably. 
+										The only increase was linked to rising fuel prices and rising expectations for higher future CO2 pricing.
+										 A particular peak period was observed in winter 2020/2021 due to the unusual cold spell, the reactivation of industry following the global pandemic in 2020 and fear of increasing inflation affected worldwide.
+										  The average power price decreased by 3% from 2022 and 2023 following the plan to achieve sustainable energy by 2050.</p>
+										  <span class="image fit"><img src="images/Picture1.gif" alt="" /></span>
+										  
+									<p>Japan offers a particularly compelling case for electricity price forecasting due to its unique market structure and geographical diversity. 
+										Since the full liberalisation of the Japanese electricity market in 2016, price formation has become increasingly sensitive to regional demand patterns, 
+										renewable energy penetration, and seasonal weather conditions. These characteristics make Japan an ideal environment for testing the robustness of time‑series forecasting models.</p>
+
+									<p>To capture these dynamics, the study selects <b>four datasets</b> from the Japan Electric Power Exchange (JEPX), representing two distinct regions — <b>Hokkaido</b> and <b>Kyushu</b>, and two contrasting seasons — 
+										<b>Spring 2023</b> and <b>Summer 2022</b>. Each dataset contains <b>85 consecutive daily observations</b> of system prices.</p>
+
+										<div class="table-wrapper">
+												<table class="alt">
+													
+													<tbody>
+														<tr>
+															<td><span class="image fit"><img src="images/desc1.png" alt="" /></span>
+														</tr>
+														<tr>
+															<td><span class="image fit"><img src="images/desc2.png" alt="" /></span>
+														</tr>
+														<tr>
+															<td><span class="image fit"><img src="images/desc3.png" alt="" /></span>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										
+									<p>The choice of regions is deliberate. Hokkaido, with its colder climate and heavier winter heating demand, often experiences more volatile price movements. 
+										Kyushu, by contrast, has a higher share of solar generation, making its prices more sensitive to weather‑driven renewable fluctuations. The seasonal contrast further enriches the analysis: 
+										spring typically exhibits moderate demand, while summer—especially in Japan—brings intense heatwaves that drive electricity consumption sharply upward. 
+										These differences allow the study to evaluate how ARIMA‑type models perform under varying levels of volatility and seasonality.</p>
+											<hr />
+
+										<h2><b>Data cleaning</b></h2>
+
+											<header>
+												<h3><b>Checking for completeness</b></h3>
+												<p>Since ARIMA models require evenly spaced observations, any gaps would necessitate imputation or removal. 
+													Fortunately, all four datasets were complete, allowing the analysis to proceed without modification</p>
+
+												<h3><b>Identifying and assessing outliers</b></h3>
+													<p>Electricity prices are known for sudden spikes caused by unexpected demand surges, generator outages, or renewable intermittency. 
+														Visual inspection through time‑series plots and histograms reveals several such spikes, particularly in the summer datasets.
+														 Rather than removing these values, the author retains them, recognising that they reflect genuine market behaviour. 
+														 Removing them would artificially smooth the series and undermine the realism of the forecasting model</p>
+												<h3><b>Testing for stationarity</b></h3>
+										            <p>Stationarity is a prerequisite for ARIMA modelling. </p>
+													
+											<h4>Three standard unit‑root tests:</h4>
+											<ul>
+												<li>Augmented Dickey–Fuller (ADF)</li>
+												<li>KPSS test</li>
+											</ul>
+											<div class="table-wrapper">
+												<table class="alt">
+													<thead>
+														<tr>
+															<th></th>
+															<th>Hokkaido Spring 2023</th>
+															<th>Kyushu Spring 2023</th>
+															<th>Hokkaido Summer 2022</th>
+															<th>Kyushu Summer 2022</th>
+													</thead>
+													<tbody>
+														<tr>
+															<td>Dickey – Fuller test</td>
+															<td>-3.996/ P – value = 0.013</td>
+															<td>-3.788/ P – value = 0.02</td>
+															<td>-17.17/ P – value = 0.001</td>
+															<td>-13.04/ P – value = 0.01</td>
+														</tr>
+														<tr>
+															<td>KPSS test</td>
+															<td> 0.27/ P – value = 0.01</td>
+															<td> 0.947/ P – value = 0.01</td>
+															<td> 1.36/ P – value = 0.01</td>
+															<td> 0.81/ P – value = 0.01</td>
+														</tr>
+														<tr>
+															<td>Conclusion</td>
+															<td>Non‑stationary</td>
+															<td>Non‑stationary</td>
+															<td>Non‑stationary</td>
+															<td>Non‑stationary</td>
+														</tr>
+					
+													</tbody>
+												</table>
+											</div>
+											<p>Across all datasets, the tests consistently indicate non‑stationarity, confirming the presence of trends, seasonality, or both.</p>
+
+
+												<h3><b>Applying transformations</b></h3>
+												<p> The purpose is to stabilise variance and remove non‑stationary components</p>
+											<h4>The sequence of transformations:</h4>
+											<ul>
+												<li><b>Seasonal differencing (lag 7)</b> to remove weekly patterns inherent in electricity demand</li>
+												<li><b>First differencing</b> to eliminate residual trends</li>
+											</ul>
+
+											<div class="table-wrapper">
+												<table class="alt">
+													
+													<tbody>
+														<tr>
+															<td><span class="image fit"><img src="images/trans1.png" alt="" /></span></td>
+															<td><span class="image fit"><img src="images/trans2.png" alt="" /></span></td>
+														</tr>
+														<tr>
+															<td><span class="image fit"><img src="images/trans3.png" alt="" /></span></td>
+															<td> <span class="image fit"><img src="images/trans4.png" alt="" /></span></td>
+														</tr>
+												
+													</tbody>
+												</table>
+											</div>
+
+											</header>
+										
+										<header>
+										<h2><b>Data Exploration</b></h2>
+
+											<header>
+												<h3><b>Time ‑ series visualisation</b></h3>
+												<div class="table-wrapper">
+												<table class="alt">
+													
+													<tbody>
+														<tr>
+															<td><span class="image fit"><img src="images/desc4.png" alt="" /></span></td>
+															<td><span class="image fit"><img src="images/desc5.png" alt="" /></span></td>
+														</tr>
+												
+													</tbody>
+												</table>
+											</div>
+												<p>Spring prices in both regions show moderate fluctuations, while summer prices—especially in Hokkaido—display pronounced spikes. 
+													These spikes correspond to periods of extreme heat, when air‑conditioning demand surges and renewable output becomes less predictable.</p>
+
+												<h3><b>Distributional characteristics</b></h3>
+												<div class="table-wrapper">
+												<table class="alt">
+													
+													<tbody>
+														<tr>
+															<td><span class="image fit"><img src="images/desc6.png" alt="" /></span></td>
+															<td><span class="image fit"><img src="images/desc7.png" alt="" /></span></td>
+														</tr>
+														<tr>
+															<td><span class="image fit"><img src="images/desc8.png" alt="" /></span></td>
+															<td> <span class="image fit"><img src="images/desc9.png" alt="" /></span></td>
+														</tr>
+												
+													</tbody>
+												</table>
+											</div>
+												<p>Histograms of the datasets show strong right‑skewness, confirming that electricity prices are not normally distributed.
+													 The summer datasets exhibit heavier tails, indicating a higher frequency of extreme price events.
+													 This reinforces the need for log transformation and careful model selection.</p>
+
+													<h3><b>Seasonal decomposition</b></h3>
+												<p>Decomposition of the series into trend, seasonal, and residual components confirms</p>
+												<div class="content">
+											<ul class="alt">
+												<li>- A clear weekly seasonal cycle</li>
+												<li>- A mild but noticeable trend component</li>
+												<li>- Irregular fluctuations consistent with market volatility</li>
+											</ul>
+
+										</div>
+
+												<h3><b>Autocorrelation patterns</b></h3>
+												<p>Autocorrelation (ACF) and partial autocorrelation (PACF) plots reveal:</p>
+												<div class="content">
+											<ul class="alt">
+												<li>- A strong weekly seasonal pattern at lag 7</li>
+												<li>- Secondary peaks at lag 14, suggesting bi‑weekly effects</li>
+												<li>- Slow decay in autocorrelation, consistent with non‑stationarity</li>
+											</ul>
+
+										</div>
+										<p>After differencing, the ACF and PACF plots become more stable, showing short‑range dependencies suitable for ARIMA modelling.</p>
+										<div class="table-wrapper">
+												<table class="alt">
+													
+													<tbody>
+														<tr>
+															<td><span class="image fit"><img src="images/trans5.png" alt="" /></span></td>
+															<td><span class="image fit"><img src="images/trans6.png" alt="" /></span></td>
+														</tr>
+														<tr>
+															<td><span class="image fit"><img src="images/trans7.png" alt="" /></span></td>
+															<td> <span class="image fit"><img src="images/trans8.png" alt="" /></span></td>
+														</tr>
+												
+													</tbody>
+												</table>
+											</div>
+										</header>
+										<h2><b>Data analysis</b></h2>
+												<header>
+												<h3><b>Implications from the data</b></h3>
+												<p>The exploratory findings suggest several important characteristics</p>
+												<div class="content">
+											<ul class="alt">
+												<li>- Electricity prices in Japan are highly seasonal, driven by weekly consumption patterns</li>
+												<li>- Regional differences significantly influence volatility.</li>
+												<li>- Summer datasets require models capable of handling extreme fluctuations.</li>
+											</ul>
+
+										</div>
+												</header>
+												<header>
+													<h3><b>Model identification</b></h3>
+													<p>Using ACF and PACF patterns, ARIMA structures seem appropriate. Seasonal differencing at lag 7 is incorporated into all models. 
+														Automated model selection (auto.arima) was tested, but ultimately was rejected because
+													it produces models with higher AIC values, and residuals from auto.arima models show remaining structure, indicating underfitting.</p>
+												</header>
+												<header>
+													<h3><b>Final model selection</b></h3>
+													<p>After testing various ARIMA configurations, the following models were selected based on AIC and residual diagnostics:</p>
+													<div class="content">
+											<ul class="alt">
+												<li>- <b>Hokkaido Spring:</b> ARIMA(1,1,18)(0,1,1)<sub>7</sub></li>
+												<li>- <b>Kyushu Spring:</b> ARIMA(1,1,10)(0,1,3)<sub>7</sub></li>
+												<li>- <b>Hokkaido Summer:</b>  ARIMA(1,1,8)(3,1,2)<sub>7</sub></li>
+												<li>- <b>Kyushu Summer:</b>-  ARIMA(2,1,8)(0,1,3){}_7<sub>7</sub></li>
+											</ul>
+
+										</div>
+												</header>
+												<header>
+													<h3><b>Residual diagnostics</b></h3>
+													<div class="table-wrapper">
+												<table class="alt">
+													
+													<tbody>
+														<tr>
+															<td><span class="image fit"><img src="images/res1.png" alt="" /></span></td>
+															<td><span class="image fit"><img src="images/res2.png" alt="" /></span></td>
+														</tr>
+														<tr>
+															<td><span class="image fit"><img src="images/res3.png" alt="" /></span></td>
+															<td> <span class="image fit"><img src="images/res4.png" alt="" /></span></td>
+														</tr>
+														<tr>
+															<td><span class="image fit"><img src="images/res5.png" alt="" /></span></td>
+															<td> <span class="image fit"><img src="images/res6.png" alt="" /></span></td>
+														</tr>
+														<tr>
+															<td><span class="image fit"><img src="images/res7.png" alt="" /></span></td>
+															<td> <span class="image fit"><img src="images/res8.png" alt="" /></span></td>
+														</tr>
+												
+													</tbody>
+												</table>
+											</div>
+											<div class="table-wrapper">
+												<table class="alt">
+													<thead>
+														<tr>
+															<th></th>
+															<th>Hokkaido Spring 2023</th>
+															<th>Kyushu Spring 2023</th>
+															<th>Hokkaido Summer 2022</th>
+															<th>Kyushu Summer 2022</th>
+													</thead>
+													<tbody>
+														<tr>
+															<td>Box test's test level</td>
+															<td>19.92</td>
+															<td>24.07</td>
+															<td>27.59</td>
+															<td>23.88</td>
+														</tr>
+														<tr>
+															<td>p - value</td>
+															<td> 0.28</td>
+															<td> 0.40</td>
+															<td> 0.23</td>
+															<td> 0.47</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+													<p>Residual analysis confirms:</p>
+													<div class="content">
+											<ul class="alt">
+												<li>- No significant autocorrelation (Ljung – Box p ‑ values > 0.2)</li>
+												<li>- Variance stability after transformation</li>
+												<li>- Non‑normality of residuals, which is typical for electricity prices</li>
+											</ul>
+
+										</div>
+										<p>Overall, the models capture the key dynamics of the series, though the non‑normality of residuals suggests that prediction intervals may be less reliable during extreme events.</p>
+												</header>
+										</header>
+
+										</header>
+										<h2><b>Data Prediction</b></h2>
+												<header>
+												<h3><b>Forecast performance</b></h3>
+												<p>The final step involves generating 7‑day ahead forecasts for each dataset using the selected models. 
+													The forecasts include both point estimates and 80% and 95% prediction intervals.</p>
+													<div class="table-wrapper">
+												<table class="alt">
+													
+													<tbody>
+														<tr>
+															<td><span class="image fit"><img src="images/fore1.png" alt="" /></span></td>
+															<td><span class="image fit"><img src="images/fore2.png" alt="" /></span></td>
+														</tr>
+														<tr>
+															<td><span class="image fit"><img src="images/fore3.png" alt="" /></span></td>
+															<td> <span class="image fit"><img src="images/fore4.png" alt="" /></span></td>
+														</tr>
+														
+													</tbody>
+												</table>
+												<p>Forecasts fall comfortably within prediction intervals.
+													Accuracy metrics indicate strong performance
+												</p>
+											</div>
+												<div class="content">
+											<ul class="alt">
+												<li>- <b>MAPE:</b> approximately 11–14%</li>
+												<li>- <b>RMSE:</b> around 1.3–1.5</li>
+												<li>- <b>MSE:</b> between 0.46 and 0.68</li>
+											</ul>
+
+										</div>
+										<p>Given the inherent volatility of electricity markets, these results are considered robust.</p>
+												</header>
+												<header>
+													<h3><b>Conclusion</b></h3>
+												</header>
+												<p>The forecasts reflect the underlying seasonal patterns identified earlier. 
+													Spring predictions show relatively smooth trajectories, while summer predictions exhibit wider confidence intervals due to higher volatility.
+													 The models successfully capture weekly cycles and short ‑ term fluctuations, demonstrating the effectiveness of ARIMA ‑ based approaches for day ‑ ahead electricity price forecasting</p>
+												<p>Overall, the ARIMA ‑ based models demonstrated satisfactory performance and successfully captured the main seasonal and temporal dynamics of the Japanese electricity market. 
+													However, the persistence of non ‑ normal residual behaviour and occasional price spikes suggests that more advanced approaches, such as ANN, hybrid models, 
+													or machine ‑ learning ‑ based architectures, may be required to achieve higher predictive accuracy in future research.</p>
+										</header>
+										<p>_____________________________________________________________________________________________________</p>
+							
+							<!-- Code -->
+									<section>
+										<header>
+											<h4>All the code from the analysis can be found in my <b><i><a href="https://github.com/linh-dan-trinh/Electricity-Price-Forecasting/tree/main" target="_blank">Github repository</a></i></b></h4>
+										</header>
+										<table class="alt">
+													
+													<tbody>
+														<ul class="actions stacked"></ul>
+														<tr>
+															<td><li><a href="https://linh-dan-trinh.github.io/portfolio/" class="button primary">Home page</a></li></td>
+															<td><li><a href="#" class="button primary">Back to top</a></li></td>	
+															<td><li><a href="#" class="button primary">Next article</a></li></td>
+															
+														</ul>
+										<div class="content">
+													</tbody>
+												</table>
+											
+												
+											
+
+						</div>
+					</section>
+
+			<section class="wrapper style2 align-center">
+			<div class="inner">		
+				
+								<!-- Contacts -->
+									<section>
+										<header>
+											<h3>Contacts</h3>
+										</header>
+										<div class="content">
+
+											<ul class="icons">
+												<li><a href="https://github.com/linh-dan-trinh" target= "_blank" class="icon brands style2 fa-github"><span class="label">Github</span></a></li>
+												<li><a href="https://www.linkedin.com/in/linh-dan-trinh/" target= "_blank" class="icon brands style2 fa-linkedin"><span class="label">LinkedIn</span></a></li>
+												<li><a href="https://www.facebook.com/ld.trijnh" target= "_blank" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+											</ul>
+
+										</div>
+									</section>
+
+								<!-- Form -->
+									<section>
+										<header>
+											<h3>Send a message</h3>
+										</header>
+										<div class="content">
+
+											<form method="post" action="#">
+												<div class="fields">
+													<div class="field half">
+														<label for="name">Name</label>
+														<input type="text" name="name" id="name" value="" />
+													</div>
+													<div class="field half">
+														<label for="email">Email</label>
+														<input type="email" name="email" id="email" value="" />
+													</div>
+												
+													<div class="field">
+														<label for="message">Message</label>
+														<textarea name="message" id="message" rows="6"></textarea>
+													</div>
+													<div class="field half">
+														<input type="checkbox" id="copy" name="copy" />
+														<label for="copy">Email me a copy of this message</label>
+													</div>
+													<div class="field half">
+														<input type="checkbox" id="human" name="human" checked />
+														<label for="human">I am a human and not a robot</label>
+													</div>
+												</div>
+												<ul class="actions">
+													<li><input type="submit" name="submit" id="submit" value="Send Message" /></li>
+												</ul>
+											</form>
+
+										</div>
+									</section>
+
+								
